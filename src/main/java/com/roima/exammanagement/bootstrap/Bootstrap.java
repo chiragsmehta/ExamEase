@@ -37,7 +37,7 @@ public class Bootstrap implements CommandLineRunner {
 
         List<User> users = new ArrayList<>();
 
-        users.add(new User("shubham", "hehe@gmail.com", "NONONO", false, Role.USER, new ArrayList<>()));
+//        users.add(new User("shubham", "hehe@gmail.com", "NONONO", false, Role.USER, new ArrayList<>()));
 //        users.add(new User("john_doe", "john.doe@example.com", "P@ssw0rd", true, new ArrayList<>()));
 //        users.add(new User("alice_smith", "alice.smith@example.com", "Secret123", false, new ArrayList<>()));
 //        users.add(new User("bob_jackson", "bob.jackson@example.com", "SecurePwd", true, new ArrayList<>()));
