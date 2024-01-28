@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+// hehe
 @Controller
 @RequestMapping("/api/v1/admin")
 public class TestAdminController {
