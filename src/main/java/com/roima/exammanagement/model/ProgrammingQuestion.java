@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -30,4 +32,12 @@ public class ProgrammingQuestion  extends BaseEntity{
     @ManyToOne
     @JoinColumn(name="exam_id")
     private Exam exam;
+
+    @ManyToMany
+    @JoinTable(
+            name = "programming_question_picture",
+            joinColumns = @JoinColumn(name = "programming_question_id"),
+            inverseJoinColumns = @JoinColumn(name = "picture_id")
+    )
+    private List<Picture> pictures;
 }

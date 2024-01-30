@@ -26,5 +26,17 @@ public class McqQuestion extends BaseEntity{
     @OneToMany(mappedBy = "mcqQuestion", cascade = CascadeType.ALL)
     private List<Option> options;
 
+    @ManyToOne
+    @JoinColumn(name = "mcq_question_category_id")
+    private McqQuestionCategory mcqQuestionCategory;
+
+    @ManyToMany
+    @JoinTable(
+            name = "mcq_question_picture",
+            joinColumns = @JoinColumn(name = "mcq_question_id"),
+            inverseJoinColumns = @JoinColumn(name = "picture_id")
+    )
+    private List<Picture> pictures;
+
 
 }

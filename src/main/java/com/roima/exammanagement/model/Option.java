@@ -1,12 +1,12 @@
 package com.roima.exammanagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -20,5 +20,13 @@ public class Option extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "mcq_question_id")
     private McqQuestion mcqQuestion;
+
+    @ManyToMany
+    @JoinTable(
+            name = "option_picture",
+            joinColumns = @JoinColumn(name = "option_id"),
+            inverseJoinColumns = @JoinColumn(name = "picture_id")
+    )
+    private List<Picture> pictures;
 
 }

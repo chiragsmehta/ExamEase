@@ -1,10 +1,7 @@
 package com.roima.exammanagement.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,7 +24,8 @@ public class ExamEnrollment extends BaseEntity{
     @JoinColumn(name = "exam_id")
     private Exam exam;
 
-    private Boolean hasSubmitted;
+    private Duration examDuration;
 
-    private Duration remainingTime;
+    @OneToOne( cascade = CascadeType.ALL)
+    private UserExamStatus userExamStatus;
 }
