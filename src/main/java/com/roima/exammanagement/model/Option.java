@@ -29,4 +29,7 @@ public class Option extends BaseEntity{
     )
     private List<Picture> pictures;
 
+    @OneToMany(mappedBy = "option")
+    private List<UserMcqQuestionSubmission> userMcqQuestionSubmissions;
+
 }

@@ -1,9 +1,9 @@
 package com.roima.exammanagement.repository;
 
-import  com.roima.exammanagement.model.Exam;
+import com.roima.exammanagement.model.Picture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExamRepository extends JpaRepository<Exam,Long> {
+public interface PictureRepository extends JpaRepository<Picture,Long> {
 }

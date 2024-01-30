@@ -31,8 +31,14 @@ public class User extends BaseEntity implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ExamEnrollment> examEnrollments;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserMcqQuestionSubmission> userMcqQuestionSubmissions;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<UserProgrammingQuestionSubmission> userProgrammingQuestionSubmissions;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,9 +1,7 @@
 package com.roima.exammanagement.model;
 
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -23,8 +23,14 @@ public class Exam extends BaseEntity{
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private Duration duration;
+    private int totalMarks;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "exam_programming_question",
+            joinColumns = @JoinColumn(name = "exam_id"),
+            inverseJoinColumns = @JoinColumn(name = "programming_question_id")
+    )
     private List<ProgrammingQuestion> programmingQuestions;
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
@@ -32,4 +38,11 @@ public class Exam extends BaseEntity{
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
     private List<ExamEnrollment> examEnrollments;
+
+    public int getTotalMarks(){
+        int totalMarks = 0;
+        totalMarks += programmingQuestions.stream().map(ProgrammingQuestion::getMarks).mapToInt(Integer::intValue).sum();
+        totalMarks += mcqQuestions.stream().map(McqQuestion::getMarks).mapToInt(Integer::intValue).sum();
+        return totalMarks;
+    }
 }

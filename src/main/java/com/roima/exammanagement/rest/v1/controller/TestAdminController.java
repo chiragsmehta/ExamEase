@@ -1,4 +1,4 @@
-package com.roima.exammanagement.api.v1.controller;
+package com.roima.exammanagement.rest.v1.controller;
 
 import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import org.springframework.http.HttpStatus;

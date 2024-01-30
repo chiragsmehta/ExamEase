@@ -33,6 +33,8 @@ public class ProgrammingQuestion  extends BaseEntity{
     @JoinColumn(name="exam_id")
     private Exam exam;
 
+    private int marks;
+
     @ManyToMany
     @JoinTable(
             name = "programming_question_picture",
@@ -40,4 +42,7 @@ public class ProgrammingQuestion  extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "picture_id")
     )
     private List<Picture> pictures;
+
+    @OneToMany(mappedBy = "programmingQuestion")
+    private List<UserProgrammingQuestionSubmission> userProgrammingQuestionSubmissions;
 }

@@ -1,4 +1,4 @@
-package com.roima.exammanagement.api.v1.controller;
+package com.roima.exammanagement.rest.v1.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

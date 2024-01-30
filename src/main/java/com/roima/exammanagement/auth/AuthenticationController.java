@@ -1,6 +1,7 @@
 package com.roima.exammanagement.auth;
 
 
+import com.nimbusds.jose.shaded.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,11 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest registerRequest
     ){
-        return new ResponseEntity<>(authenticationService.register(registerRequest), HttpStatus.CREATED);
+       try{
+           return new ResponseEntity<AuthenticationResponse>(authenticationService.register(registerRequest), HttpStatus.CREATED);
+       }catch (Exception e){
+           return new ResponseEntity<>(AuthenticationResponse.builder().error(e.getMessage()).build(),HttpStatus.BAD_REQUEST);
+       }
     }
 
     @PostMapping("/authenticate")

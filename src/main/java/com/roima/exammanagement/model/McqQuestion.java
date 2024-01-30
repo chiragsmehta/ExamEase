@@ -30,6 +30,12 @@ public class McqQuestion extends BaseEntity{
     @JoinColumn(name = "mcq_question_category_id")
     private McqQuestionCategory mcqQuestionCategory;
 
+    @ManyToOne
+    @JoinColumn(name = "difficulty_level")
+    private DifficultyLevel difficultyLevel;
+
+    private int marks;
+
     @ManyToMany
     @JoinTable(
             name = "mcq_question_picture",
@@ -37,6 +43,9 @@ public class McqQuestion extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "picture_id")
     )
     private List<Picture> pictures;
+
+    @OneToMany(mappedBy = "mcqQuestion")
+    private List<UserMcqQuestionSubmission> userMcqQuestionSubmissions;
 
 
 }

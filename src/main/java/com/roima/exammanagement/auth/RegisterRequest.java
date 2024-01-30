@@ -1,16 +1,16 @@
 package com.roima.exammanagement.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+
 public class RegisterRequest {
-    private String username;
+    @NonNull
+    private String name;
+    @NonNull
     private String email;
+    @NonNull
     private String password;
 }

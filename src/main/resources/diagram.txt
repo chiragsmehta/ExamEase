@@ -3,7 +3,7 @@ Table  user{
   username string [not null]
   email string [not null]
   password string [not null]
-  is_admin boolean
+  user_role enum
 }
 
 Table exam{
@@ -12,6 +12,7 @@ Table exam{
   start_date_time datetime [not null]
   end_date_time datetime [not null]
   duration int [not null]
+  total_marks int
 }
 
 
@@ -22,6 +23,7 @@ Table programming_question{
   exam_id int
   difficulty_level_id int
   answer string
+  marks int
 }
 
 Table difficulty_level{
@@ -35,6 +37,7 @@ Table mcq_question{
   question string
   exam_id int
   difficulty_level_id int
+  marks int
 }
 
 Table option{
@@ -113,5 +116,5 @@ Ref: programming_question_image.programming_question_id > programming_question.i
 Ref: programming_question_image.image_id > image.id
 Ref: option_image.option_id > option.id
 Ref: option_image.image_id > image.id
-Ref: user_exam_status.exam_enrollment_id > exam_enrollment.id
+Ref: user_exam_status.exam_enrollment_id - exam_enrollment.id
 Ref: mcq_question.difficulty_level_id > difficulty_level.id
