@@ -1,0 +1,117 @@
+Table  user{
+  id int [primary key]
+  username string [not null]
+  email string [not null]
+  password string [not null]
+  is_admin boolean
+}
+
+Table exam{
+  id int [primary key]
+  name string [not null]
+  start_date_time datetime [not null]
+  end_date_time datetime [not null]
+  duration int [not null]
+}
+
+
+Table programming_question{
+  id int [primary key]
+  description string
+  question string
+  exam_id int
+  difficulty_level_id int
+  answer string
+}
+
+Table difficulty_level{
+  id int [primary key]
+  name string
+}
+
+
+Table mcq_question{
+  id int [primary key]
+  question string
+  exam_id int
+  difficulty_level_id int
+}
+
+Table option{
+  id int [primary key]
+  value string
+  is_correct boolean
+  mcq_question_id int
+}
+
+Table exam_enrollment{
+  id int [primary key]
+  user_id int
+  exam_id int
+}
+
+Table user_exam_status{
+  id int [primary key]
+  exam_enrollment_id int
+  start_date_time int
+  submission_date_time int
+  has_submitted boolean
+}
+
+Table user_mcq_question_submission{
+  id int [primary key]
+  user_id int
+  mcq_question_id int
+  option_id int
+}
+
+Table user_programming_question_submission{
+  id int [primary key]
+  user_id int
+  programming_question_id int
+  user_solution string
+}
+
+Table image{
+  id int [primary key]
+  url string
+  alt_text string
+}
+
+Table mcq_question_image{
+  id int [primary key]
+  image_id int
+  mcq_question_id int
+}
+
+Table programming_question_image{
+  id int [primary key]
+  image_id int
+  programming_question_id int
+}
+
+Table option_image{
+  id int [primary key]
+  image_id int
+  option_id int
+}
+
+Ref: option.mcq_question_id > mcq_question.id
+Ref: mcq_question.exam_id > exam.id
+Ref: exam_enrollment.user_id > user.id
+Ref: exam_enrollment.exam_id > exam.id
+Ref: programming_question.exam_id > exam.id
+Ref: programming_question.difficulty_level_id > difficulty_level.id
+Ref: user_mcq_question_submission.user_id > user.id
+Ref: user_mcq_question_submission.mcq_question_id > mcq_question.id
+Ref: user_mcq_question_submission.option_id > option.id
+Ref:user_programming_question_submission.user_id > user.id
+Ref:user_programming_question_submission.programming_question_id > programming_question.id
+Ref: mcq_question_image.mcq_question_id > mcq_question.id
+Ref: mcq_question_image.image_id > image.id
+Ref: programming_question_image.programming_question_id > programming_question.id
+Ref: programming_question_image.image_id > image.id
+Ref: option_image.option_id > option.id
+Ref: option_image.image_id > image.id
+Ref: user_exam_status.exam_enrollment_id > exam_enrollment.id
+Ref: mcq_question.difficulty_level_id > difficulty_level.id
