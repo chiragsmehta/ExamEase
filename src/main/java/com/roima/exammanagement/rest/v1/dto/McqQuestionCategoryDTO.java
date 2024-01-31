@@ -1,6 +1,7 @@
 package com.roima.exammanagement.rest.v1.dto;
 
 
+import com.roima.exammanagement.rest.v1.dto.simple.SimpleMcqQuestionDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -9,5 +10,5 @@ import java.util.List;
 public class McqQuestionCategoryDTO {
     private Long id;
     private String name;
-    private List<McqQuestionDTO> mcqQuestionDTOS;
+    private List<SimpleMcqQuestionDTO> mcqQuestion;
 }

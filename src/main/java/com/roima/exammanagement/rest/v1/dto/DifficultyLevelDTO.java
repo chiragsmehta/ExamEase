@@ -1,5 +1,7 @@
 package com.roima.exammanagement.rest.v1.dto;
 
+import com.roima.exammanagement.rest.v1.dto.simple.SimpleMcqQuestionDTO;
+import com.roima.exammanagement.rest.v1.dto.simple.SimpleProgrammingQuestionDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -8,6 +10,6 @@ import java.util.List;
 public class DifficultyLevelDTO {
     private Long id;
     private String name;
-    private List<ProgrammingQuestionDTO> programmingQuestionDTOS;
-    private List<McqQuestionDTO> mcqQuestionDTOS;
+    private List<SimpleProgrammingQuestionDTO> programmingQuestion;
+    private List<SimpleMcqQuestionDTO> mcqQuestion;
 }

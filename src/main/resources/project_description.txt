@@ -1,0 +1,40 @@
+Online Examination Module
+
+There will be two sections: MCQ and Programming.
+
+Must-Have:
+    For MCQ:
+      For Admin / Examiner:
+          Should be able to create students profile with basic student data
+          The admin should be able to enter questions in the text area.
+          There will be three categories of questions: Logical, Technical, and Programming.
+          Each question will have 4 answer options
+          The admin can enter text for each option.
+          The admin will enter the Answer (correct option).
+          The admin should be able to create a new exam by selecting the number of questions from each category
+          Should be able to view summaries and detailed results of all exams completed so far (with filters).
+          The admin should be able to set passing criteria and identify students who have passed each exam.
+      For Examinees:
+          Will select one answer from the available options.
+          Should be able to change the answer as long as the exam hasn't been submitted.
+          Should be able to navigate back and forth through the questions.
+          The test will be auto-submitted when the set time for the test expires.
+          Prevent the copy-paste of questions and answers.
+
+    Separate section for programming question:
+      Admin can enter programming question and answers
+      Admin can select number of programming question for each exam
+      Each program will have a difficulty level
+      Rest all same as MCQ
+
+Nice-to-Have:
+    Admin should be able to add difficulty level to each question
+    Admin should be able to design test based on difficulty level and category
+    Admin should be able to add images in the question and answer boxes
+    Detect network disconnections and pause the exam on network issues. To resume the exam, the user has to re-enter credentials. The exam status should remain the same. (Idea is to waste users time here)
+    Each logins should be logged
+    The above criteria are also true in the case where the user accidentally closes the browser. Provide a warning before closing the browser.
+    The exam must be started and completed on the same computer (detect the IP address and MAC address).
+    Changing or minimizing the browser tab will pause the exam (Disable ctrl, shift, tab, alt and windows key).
+    Take periodic screenshots of the screen and pictures of user during the exam.
+    Display answered and unanswered questions to the user and make it easy to navigate to a specific question.

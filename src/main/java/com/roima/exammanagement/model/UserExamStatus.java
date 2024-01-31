@@ -4,10 +4,7 @@ package com.roima.exammanagement.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserExamStatus extends  BaseEntity {
 
     @OneToOne
@@ -27,7 +25,7 @@ public class UserExamStatus extends  BaseEntity {
 
     private LocalDateTime submissionDateTime;
 
-    private Boolean hasSubmitted;
+    private Boolean hasSubmitted = false;
 
     private Duration remainingDuration;
 }

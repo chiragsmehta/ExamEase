@@ -14,6 +14,9 @@ import java.time.Duration;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_id","exam_id"})
+})
 public class ExamEnrollment extends BaseEntity{
 
     @ManyToOne
@@ -23,8 +26,6 @@ public class ExamEnrollment extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;
-
-    private Duration examDuration;
 
     @OneToOne( cascade = CascadeType.ALL)
     private UserExamStatus userExamStatus;

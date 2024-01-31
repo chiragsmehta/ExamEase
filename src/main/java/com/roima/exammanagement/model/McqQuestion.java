@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,12 +20,16 @@ public class McqQuestion extends BaseEntity{
     @Lob
     private String question;
 
-    @ManyToOne
-    @JoinColumn(name = "exam_id")
-    private Exam exam;
+    @ManyToMany
+    @JoinTable(
+            name = "exam_mcq_question",
+            inverseJoinColumns = @JoinColumn(name = "exam_id"),
+            joinColumns = @JoinColumn(name = "mcq_question_id")
+    )
+    private List<Exam> exam = new ArrayList<>();
 
     @OneToMany(mappedBy = "mcqQuestion", cascade = CascadeType.ALL)
-    private List<Option> options;
+    private List<Option> options = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "mcq_question_category_id")
@@ -42,7 +47,7 @@ public class McqQuestion extends BaseEntity{
             joinColumns = @JoinColumn(name = "mcq_question_id"),
             inverseJoinColumns = @JoinColumn(name = "picture_id")
     )
-    private List<Picture> pictures;
+    private List<Picture> pictures =new ArrayList<>();
 
     @OneToMany(mappedBy = "mcqQuestion")
     private List<UserMcqQuestionSubmission> userMcqQuestionSubmissions;

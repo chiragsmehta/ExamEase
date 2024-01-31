@@ -5,6 +5,9 @@ import com.roima.exammanagement.model.Role;
 import com.roima.exammanagement.model.User;
 import com.roima.exammanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +19,7 @@ import com.roima.exammanagement.config.ApplicationConfig.*;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -44,6 +48,7 @@ public class AuthenticationService {
                 )
         );
     var user = userRepository.findByEmail(authenticationRequest.getEmail()).orElseThrow();
+    logger.info(user.getEmail());
     var jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()
             .token(jwtToken)
