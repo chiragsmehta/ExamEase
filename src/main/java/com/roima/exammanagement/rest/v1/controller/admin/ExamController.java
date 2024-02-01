@@ -28,8 +28,6 @@ public class ExamController {
     private final ExamService examService;
     private final UserService userService;
     private final McqQuestionService mcqQuestionService;
-    private static Logger logger = LoggerFactory.getLogger(ExamController.class);
-
     @PostMapping("")
     public ResponseEntity<Boolean> saveExam(@RequestBody ExamDTO examDTO){
         return new ResponseEntity<>(examService.save(examDTO), HttpStatus.OK);

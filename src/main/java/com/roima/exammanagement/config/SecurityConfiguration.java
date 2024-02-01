@@ -1,7 +1,7 @@
 package com.roima.exammanagement.config;
 
 
-import jakarta.servlet.Filter;
+import javax.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,15 +24,18 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        return http.
-                authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/api/v1/admin/**").authenticated()
-                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/user/**").authenticated()
-                        .requestMatchers("/api/v1/user/**").hasRole("USER")
-                        .requestMatchers("/api/v1/auth/register").authenticated()
-                        .requestMatchers("/api/v1/auth/register").hasRole("USER")
-                        .requestMatchers("/api/v1/auth/authenticate").permitAll())
+        return http
+                .authorizeHttpRequests()
+                .anyRequest().permitAll()
+//                .requestMatchers().authenticated()
+//                .antMatchers("/api/v1/admin/**").authenticated()
+//                .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
+//                .antMatchers("/api/v1/user/**").authenticated()
+//                .antMatchers("/api/v1/user/**").authenticated()
+//                .antMatchers("/api/v1/user/**").hasRole("USER")
+//                .antMatchers("/api/v1/user/**").hasRole("USER")
+//                .antMatchers("/api/v1/auth/authenticate").permitAll()
+                .and()
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

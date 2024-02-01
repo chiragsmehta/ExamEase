@@ -1,7 +1,7 @@
 package com.roima.exammanagement.model;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,7 +26,7 @@ public class McqQuestion extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "exam_id"),
             joinColumns = @JoinColumn(name = "mcq_question_id")
     )
-    private List<Exam> exam = new ArrayList<>();
+    private List<Exam> exams = new ArrayList<>();
 
     @OneToMany(mappedBy = "mcqQuestion", cascade = CascadeType.ALL)
     private List<Option> options = new ArrayList<>();

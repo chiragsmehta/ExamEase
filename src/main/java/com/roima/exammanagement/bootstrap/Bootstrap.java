@@ -18,7 +18,7 @@ class Bootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        var admin = User.builder()
+        User admin = User.builder()
                 .name("admin")
                 .email("admin@admin.com")
                 .password(passwordEncoder.encode("admin"))

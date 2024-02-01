@@ -17,12 +17,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final ExamRepository examRepository;
@@ -31,7 +31,7 @@ public class UserService {
     public UserDTO getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        User user = userRepository.findByEmail(currentPrincipalName).orElseThrow();
+        User user = userRepository.findByEmail(currentPrincipalName).orElse(null);
         return userMapper.toDTO(user);
     }
 
@@ -62,12 +62,12 @@ public class UserService {
     }
 
     public List<UserDTO> findAll(){
-        return  userRepository.findAll().stream().map(userMapper::toDTO).toList();
+        return  userRepository.findAll().stream().map(userMapper::toDTO).collect(Collectors.toList());
     }
 
     public List<UserDTO> findByExamId(Long examId) {
         List<User> users = userRepository.findAllByExamId(examId);
-        return users.stream().map(userMapper::toDTO).toList();
+        return users.stream().map(userMapper::toDTO).collect(Collectors.toList());
     }
 
     public Boolean deleteUserById(Long userId){

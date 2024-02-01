@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface McqQuestionRepository extends JpaRepository<McqQuestion,Long> {
 
-    public List<McqQuestion> findMcqByExamId(Long examId);
+    public List<McqQuestion> findMcqByExams(Long examId);
 }

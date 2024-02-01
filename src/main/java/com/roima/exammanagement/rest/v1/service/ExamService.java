@@ -14,6 +14,7 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,8 +34,8 @@ public class ExamService {
 
     public Boolean assignExamToUserById(@NonNull Long userId, @NonNull Long examId){
         try{
-            Exam exam = examRepository.findById(examId).orElseThrow();
-            User user = userRepository.findById(userId).orElseThrow();
+            Exam exam = examRepository.findById(examId).orElse(null);
+            User user = userRepository.findById(userId).orElse(null);
             ExamEnrollment examEnrollment = new ExamEnrollment(user,exam,null);
             examEnrollementRepository.save(examEnrollment);
             UserExamStatus userExamStatus = UserExamStatus.builder()
@@ -62,7 +63,7 @@ public class ExamService {
     }
 
     public List<McqQuestionDTO> findMcqQuestionByExamId(@NonNull Long examId){
-        List<McqQuestion> mcqQuestions = mcqQuestionRepository.findMcqByExamId(examId);
-        return mcqQuestions.stream().map(mcqQuestionMapper::toDTO).toList();
+        List<McqQuestion> mcqQuestions = mcqQuestionRepository.findMcqByExams(examId);
+        return mcqQuestions.stream().map(mcqQuestionMapper::toDTO).collect(Collectors.toList());
     }
 }

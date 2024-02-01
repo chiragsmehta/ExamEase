@@ -13,13 +13,15 @@ import com.roima.exammanagement.rest.v1.mapper.McqQuestionMapper;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class McqQuestionService {
     private final McqQuestionRepository mcqQuestionRepository;
@@ -29,9 +31,9 @@ public class McqQuestionService {
 
     public List<McqQuestionDTO> findAll(){
         mcqQuestionRepository.findAll().forEach((item -> {
-            log.debug(String.valueOf(item.getExam().size()));
+            System.out.println(item.getExams().size());
         }));
-        return mcqQuestionRepository.findAll().stream().map(mcqQuestionMapper::toDTO).toList();
+        return mcqQuestionRepository.findAll().stream().map(mcqQuestionMapper::toDTO).collect(Collectors.toList());
     }
 
     public McqQuestionDTO save(@NonNull McqQuestionDTO mcqQuestionDTO){
@@ -43,14 +45,14 @@ public class McqQuestionService {
     }
 
     public McqQuestionDTO findById(@NonNull Long id){
-        McqQuestion mcqQuestion = mcqQuestionRepository.findById(id).orElseThrow();
+        McqQuestion mcqQuestion = mcqQuestionRepository.findById(id).orElse(null);
         return mcqQuestionMapper.toDTO(mcqQuestion);
     }
 
     public Boolean assignMcqQuestionToExamById(@NonNull Long mcqQuestionId, @NonNull Long examId){
         try {
-            McqQuestion mcqQuestion = mcqQuestionRepository.findById(mcqQuestionId).orElseThrow();
-            Exam exam = examRepository.findById(examId).orElseThrow();
+            McqQuestion mcqQuestion = mcqQuestionRepository.findById(mcqQuestionId).orElse(null);
+            Exam exam = examRepository.findById(examId).orElse(null);
             List<McqQuestion> examMcqQuestions = exam.getMcqQuestions();
             examMcqQuestions.add(mcqQuestion);
             examRepository.save(exam);
@@ -62,8 +64,8 @@ public class McqQuestionService {
 
     public Boolean removeMcqQuestionFromExamById(@NonNull Long mcqQuestionId, @NonNull Long examId){
         try {
-            Exam exam = examRepository.findById(examId).orElseThrow();
-            exam.getMcqQuestions().remove(mcqQuestionRepository.findById(mcqQuestionId).orElseThrow());
+            Exam exam = examRepository.findById(examId).orElse(null);
+            exam.getMcqQuestions().remove(mcqQuestionRepository.findById(mcqQuestionId).orElse(null));
             examRepository.save(exam);
             return true;
         }catch (Exception e){

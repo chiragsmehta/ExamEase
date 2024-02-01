@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/v1/admin/mcq")
 @RequiredArgsConstructor
@@ -29,7 +28,6 @@ public class McqQuestionController {
         try{
             return new ResponseEntity<>(mcqQuestionService.save(mcqQuestionDTO),HttpStatus.CREATED);
         }catch (Exception e){
-            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

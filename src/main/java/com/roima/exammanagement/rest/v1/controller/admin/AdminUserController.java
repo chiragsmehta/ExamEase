@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/admin/user")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AdminUserController {
 
     private final UserService userService;
@@ -25,7 +26,7 @@ public class AdminUserController {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity <UserDTO> findUserByEmail(@PathVariable Long id){
+    public ResponseEntity <UserDTO> findUserById(@PathVariable Long id){
         try{
             return new ResponseEntity<>(userService.findUserById(id),HttpStatus.OK);
         }catch (UsernameNotFoundException e){

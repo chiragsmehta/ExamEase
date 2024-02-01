@@ -1,7 +1,6 @@
 package com.roima.exammanagement.auth;
 
 
-import com.nimbusds.jose.shaded.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

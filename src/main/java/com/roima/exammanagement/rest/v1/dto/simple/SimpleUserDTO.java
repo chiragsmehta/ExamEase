@@ -12,7 +12,7 @@ import java.util.List;
 public class SimpleUserDTO {
 
     private Long id;
-    private String username;
+    private String name;
     private String email;
 //    private String password;
     private Boolean isAdmin;

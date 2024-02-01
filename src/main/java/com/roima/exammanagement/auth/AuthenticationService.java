@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,14 +26,14 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     public AuthenticationResponse register(RegisterRequest registerRequest) {
-        var user = com.roima.exammanagement.model.User.builder()
+        User user = com.roima.exammanagement.model.User.builder()
                 .name(registerRequest.getName())
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtService.generateToken(user);
         return  AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -47,9 +47,9 @@ public class AuthenticationService {
                         authenticationRequest.getPassword()
                 )
         );
-    var user = userRepository.findByEmail(authenticationRequest.getEmail()).orElseThrow();
+    User user = userRepository.findByEmail(authenticationRequest.getEmail()).orElse(null);
     logger.info(user.getEmail());
-    var jwtToken = jwtService.generateToken(user);
+    String jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()
             .token(jwtToken)
             .build();

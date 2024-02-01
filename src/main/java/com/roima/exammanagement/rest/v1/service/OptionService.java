@@ -25,8 +25,8 @@ public class OptionService {
 
     public Boolean addOptionToMcqQuestionById(Long mcqQuestionId, Long optionId){
         try {
-            Option option = optionRepository.findById(optionId).orElseThrow();
-            McqQuestion mcqQuestion = mcqQuestionRepository.findById(mcqQuestionId).orElseThrow();
+            Option option = optionRepository.findById(optionId).orElse(null);
+            McqQuestion mcqQuestion = mcqQuestionRepository.findById(mcqQuestionId).orElse(null);
             mcqQuestion.getOptions().add(option);
             mcqQuestionRepository.save(mcqQuestion);
             return true;

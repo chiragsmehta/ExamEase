@@ -12,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ProgrammingQuestionService {
@@ -19,7 +22,7 @@ public class ProgrammingQuestionService {
     private final ProgrammingQuestionMapper programmingQuestionMapper;
     private final ExamRepository examRepository;
 
-    public ProgrammingQuestionDTO saveProgrammingQuestion(@NonNull  ProgrammingQuestionDTO programmingQuestionDTO){
+    public ProgrammingQuestionDTO save(@NonNull  ProgrammingQuestionDTO programmingQuestionDTO){
         ProgrammingQuestion programmingQuestion = programmingQuestionMapper.toEntity(programmingQuestionDTO);
         if(programmingQuestion != null){
             programmingQuestionRepository.save(programmingQuestion);
@@ -29,10 +32,14 @@ public class ProgrammingQuestionService {
         return  programmingQuestionDTO;
     }
 
+    public List<ProgrammingQuestionDTO> findAll(){
+        return programmingQuestionRepository.findAll().stream().map(programmingQuestionMapper::toDTO).collect(Collectors.toList());
+    }
+
     public Boolean addProgrammingQuestionToExamById(@NonNull Long examId, @NonNull Long programmingQuestionId){
         try {
-            Exam exam = examRepository.findById(examId).orElseThrow();
-            ProgrammingQuestion programmingQuestion = programmingQuestionRepository.findById(programmingQuestionId).orElseThrow();
+            Exam exam = examRepository.findById(examId).orElse(null);
+            ProgrammingQuestion programmingQuestion = programmingQuestionRepository.findById(programmingQuestionId).orElse(null);
             exam.getProgrammingQuestions().add(programmingQuestion);
             examRepository.save(exam);
             return true;
@@ -43,8 +50,8 @@ public class ProgrammingQuestionService {
 
     public Boolean removeProgrammingQuestionFromExamById(@NonNull Long programmingQuestionId, @NonNull Long examId){
         try {
-            Exam exam = examRepository.findById(examId).orElseThrow();
-            exam.getProgrammingQuestions().remove(programmingQuestionRepository.findById(programmingQuestionId).orElseThrow());
+            Exam exam = examRepository.findById(examId).orElse(null);
+            exam.getProgrammingQuestions().remove(programmingQuestionRepository.findById(programmingQuestionId).orElse(null));
             examRepository.save(exam);
             return true;
         }catch (Exception e){
