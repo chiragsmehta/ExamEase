@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,9 +20,16 @@ public class McqQuestionDTO {
     private String question;
     private List<SimpleExamDTO> exams;
     private SimpleDifficultyLevelDTO difficulty;
-    private List<SimpleOptionDTO> option;
+    private List<SimpleOptionDTO> options;
     private SimpleMcqQuestionCategoryDTO mcqQuestionCategory;
     private List<SimplePictureDTO> picture;
     private int marks;
+
+    public void addOption(SimpleOptionDTO simpleOptionDTO){
+        if(options == null){
+            options = new ArrayList<>();
+        }
+        options.add(simpleOptionDTO);
+    }
 
 }

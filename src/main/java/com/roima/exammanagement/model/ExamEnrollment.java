@@ -28,5 +28,6 @@ public class ExamEnrollment extends BaseEntity{
     private Exam exam;
 
     @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_exam_status_id")
     private UserExamStatus userExamStatus;
 }

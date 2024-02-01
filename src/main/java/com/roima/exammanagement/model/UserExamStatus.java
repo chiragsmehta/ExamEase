@@ -3,6 +3,7 @@ package com.roima.exammanagement.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.*;
 
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 public class UserExamStatus extends  BaseEntity {
 
     @OneToOne
+    @JoinColumn(name = "exam_enrollment_id")
     private ExamEnrollment examEnrollment;
 
     private LocalDateTime startDateTime;
