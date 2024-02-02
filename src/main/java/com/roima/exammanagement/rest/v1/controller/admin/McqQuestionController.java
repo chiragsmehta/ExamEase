@@ -1,10 +1,9 @@
 package com.roima.exammanagement.rest.v1.controller.admin;
 
 
-import com.roima.exammanagement.rest.v1.dto.McqQuestionDTO;
-import com.roima.exammanagement.rest.v1.service.McqQuestionService;
+import com.roima.exammanagement.rest.v1.dto.QuestionDTO;
+import com.roima.exammanagement.rest.v1.service.QuestionService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +14,18 @@ import java.util.List;
 @RequestMapping("/api/v1/admin/mcq")
 @RequiredArgsConstructor
 public class McqQuestionController {
-    private final McqQuestionService mcqQuestionService;
+    private final QuestionService questionService;
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<McqQuestionDTO>> findAllMcqQuestion(){
-        return new ResponseEntity<>(mcqQuestionService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<QuestionDTO>> findAllMcqQuestion(){
+        return new ResponseEntity<>(questionService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<McqQuestionDTO> createMcqQuestion(@RequestBody McqQuestionDTO mcqQuestionDTO){
+    public ResponseEntity<QuestionDTO> createMcqQuestion(@RequestBody QuestionDTO questionDTO){
         try{
-            return new ResponseEntity<>(mcqQuestionService.save(mcqQuestionDTO),HttpStatus.CREATED);
+            return new ResponseEntity<>(questionService.save(questionDTO),HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -35,7 +34,7 @@ public class McqQuestionController {
 
     @PostMapping("/{mcq_id}/assign_exam/{exam_id}")
     public ResponseEntity<Boolean> assignMcqQuestionToExam(@PathVariable("mcq_id") Long mcqId,@PathVariable("exam_id") Long examId){
-        Boolean isAssigned = mcqQuestionService.assignMcqQuestionToExamById(mcqId,examId);
+        Boolean isAssigned = questionService.assignMcqQuestionToExamById(mcqId,examId);
         if(isAssigned){
             return new ResponseEntity<>(true,HttpStatus.CREATED);
         }else{

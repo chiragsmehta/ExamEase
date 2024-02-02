@@ -1,21 +1,15 @@
 package com.roima.exammanagement.rest.v1.controller.admin;
 
 
-import com.roima.exammanagement.model.McqQuestion;
-import com.roima.exammanagement.repository.ExamRepository;
 import com.roima.exammanagement.rest.v1.dto.ExamDTO;
-import com.roima.exammanagement.rest.v1.dto.McqQuestionDTO;
+import com.roima.exammanagement.rest.v1.dto.QuestionDTO;
 import com.roima.exammanagement.rest.v1.dto.UserDTO;
 import com.roima.exammanagement.rest.v1.service.ExamService;
-import com.roima.exammanagement.rest.v1.service.McqQuestionService;
+import com.roima.exammanagement.rest.v1.service.QuestionService;
 import com.roima.exammanagement.rest.v1.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +21,7 @@ public class ExamController {
 
     private final ExamService examService;
     private final UserService userService;
-    private final McqQuestionService mcqQuestionService;
+    private final QuestionService questionService;
     @PostMapping("")
     public ResponseEntity<Boolean> saveExam(@RequestBody ExamDTO examDTO){
         return new ResponseEntity<>(examService.save(examDTO), HttpStatus.OK);
@@ -44,7 +38,7 @@ public class ExamController {
     }
 
     @GetMapping("/{exam_id}/questions")
-    public ResponseEntity<List<McqQuestionDTO>> findMcqQuestionsByExamId(@PathVariable("exam_id") Long examId){
-        return new ResponseEntity<>(examService.findMcqQuestionByExamId(examId),HttpStatus.OK);
+    public ResponseEntity<List<QuestionDTO>> findMcqQuestionsByExamId(@PathVariable("exam_id") Long examId){
+        return new ResponseEntity<>(examService.findQuestionByExamId(examId),HttpStatus.OK);
     }
 }

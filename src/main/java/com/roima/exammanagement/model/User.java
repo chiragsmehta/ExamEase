@@ -7,18 +7,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class User extends BaseEntity implements UserDetails {
 
     @Column(unique = true, nullable = false)
@@ -38,10 +35,8 @@ public class User extends BaseEntity implements UserDetails {
     private List<ExamEnrollment> examEnrollments;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserMcqQuestionSubmission> userMcqQuestionSubmissions;
+    private List<UserQuestionSubmission> userQuestionSubmissions;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<UserProgrammingQuestionSubmission> userProgrammingQuestionSubmissions;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -3,6 +3,7 @@ package com.roima.exammanagement.model;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,17 +15,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UserMcqQuestionSubmission extends BaseEntity{
+public class UserQuestionSubmission extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "user_id" )
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "mcq_question_id")
-    private McqQuestion mcqQuestion;
+    @JoinColumn(name = "question_id")
+    private Question question;
 
     @ManyToOne
     @JoinColumn(name = "option_id")
     private Option option;
+
+    @Lob
+    private String answer;
 
 }

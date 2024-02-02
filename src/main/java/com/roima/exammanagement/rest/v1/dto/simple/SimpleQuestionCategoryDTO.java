@@ -4,7 +4,7 @@ package com.roima.exammanagement.rest.v1.dto.simple;
 import lombok.Data;
 
 @Data
-public class SimpleUserProgrammingQuestionSubmissionDTO {
+public class SimpleQuestionCategoryDTO {
     private Long id;
-    private String userSolution;
+    private String name;
 }

@@ -33,17 +33,9 @@ public class Picture extends BaseEntity{
 
     @ManyToMany
     @JoinTable(
-            name = "mcq_question_picture",
+            name = "question_picture",
             joinColumns = @JoinColumn(name = "picture_id"),
-            inverseJoinColumns = @JoinColumn(name = "mcq_question_id")
+            inverseJoinColumns = @JoinColumn(name = "question_id")
     )
-    private List<McqQuestion> mcqQuestions;
-
-    @ManyToMany
-    @JoinTable(
-            name = "programming_question_picture",
-            joinColumns = @JoinColumn(name = "picture_id"),
-            inverseJoinColumns = @JoinColumn(name = "programming_question_id")
-    )
-    private List<ProgrammingQuestion> programmingQuestions;
-}
+    private List<Question> questions;
+    }

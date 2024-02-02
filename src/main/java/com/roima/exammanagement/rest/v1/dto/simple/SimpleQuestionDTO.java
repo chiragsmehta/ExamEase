@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SimpleMcqQuestionDTO {
+public class SimpleQuestionDTO {
     private Long id;
     private String question;
+    private String description;
     private int marks;
 
 }

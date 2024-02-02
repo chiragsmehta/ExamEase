@@ -1,16 +1,13 @@
 package com.roima.exammanagement.rest.v1.service;
 
 
-import com.roima.exammanagement.model.Exam;
 import com.roima.exammanagement.model.User;
 import com.roima.exammanagement.repository.ExamRepository;
 import com.roima.exammanagement.repository.UserRepository;
 import com.roima.exammanagement.rest.v1.dto.UserDTO;
 import com.roima.exammanagement.rest.v1.mapper.UserMapper;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -79,4 +76,14 @@ public class UserService {
         }
     }
 
+    public UserDTO update(UserDTO userDTO){
+        if(userRepository.existsById(userDTO.getId())){
+            User user = userRepository.findById(userDTO.getId()).orElse(null);
+            userMapper.updateSourceFromTarget(userDTO,user);
+            userRepository.save(user);
+            return userMapper.toDTO(user);
+        }else {
+            throw new UsernameNotFoundException("User Not Found");
+        }
+    }
 }

@@ -15,9 +15,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class McqQuestionCategory extends BaseEntity{
+public class QuestionCategory extends BaseEntity{
     private String name;
 
-    @OneToMany(mappedBy = "mcqQuestionCategory")
-    private List<McqQuestion> mcqQuestions;
+    @OneToMany(mappedBy = "questionCategory")
+    private List<Question> questions;
 }

@@ -4,12 +4,11 @@ package com.roima.exammanagement.rest.v1.service;
 import com.roima.exammanagement.model.*;
 import com.roima.exammanagement.repository.*;
 import com.roima.exammanagement.rest.v1.dto.ExamDTO;
-import com.roima.exammanagement.rest.v1.dto.McqQuestionDTO;
+import com.roima.exammanagement.rest.v1.dto.QuestionDTO;
 import com.roima.exammanagement.rest.v1.mapper.ExamMapper;
-import com.roima.exammanagement.rest.v1.mapper.McqQuestionMapper;
+import com.roima.exammanagement.rest.v1.mapper.QuestionMapper;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,9 @@ public class ExamService {
     private final ExamMapper examMapper;
     private final UserRepository userRepository;
     private final ExamEnrollementRepository examEnrollementRepository;
-    private final McqQuestionRepository mcqQuestionRepository;
+    private final QuestionRepository questionRepository;
     private final UserExamStatusRepository userExamStatusRepository;
-    private final McqQuestionMapper mcqQuestionMapper;
+    private final QuestionMapper questionMapper;
 
     public ExamDTO findExamById(Long id) throws ChangeSetPersister.NotFoundException {
         Exam exam = examRepository.findById(id).orElseThrow(ChangeSetPersister.NotFoundException::new);
@@ -62,8 +61,8 @@ public class ExamService {
         }
     }
 
-    public List<McqQuestionDTO> findMcqQuestionByExamId(@NonNull Long examId){
-        List<McqQuestion> mcqQuestions = mcqQuestionRepository.findMcqByExams(examId);
-        return mcqQuestions.stream().map(mcqQuestionMapper::toDTO).collect(Collectors.toList());
+    public List<QuestionDTO> findQuestionByExamId(@NonNull Long examId){
+        List<Question> questions = questionRepository.findMcqByExams(examId);
+        return questions.stream().map(questionMapper::toDTO).collect(Collectors.toList());
     }
 }

@@ -1,9 +1,9 @@
 package com.roima.exammanagement.rest.v1.service;
 
 
-import com.roima.exammanagement.model.McqQuestion;
+import com.roima.exammanagement.model.Question;
 import com.roima.exammanagement.model.Option;
-import com.roima.exammanagement.repository.McqQuestionRepository;
+import com.roima.exammanagement.repository.QuestionRepository;
 import com.roima.exammanagement.repository.OptionRepository;
 import com.roima.exammanagement.rest.v1.dto.OptionDTO;
 import com.roima.exammanagement.rest.v1.mapper.OptionMapper;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OptionService {
     private final OptionRepository optionRepository;
-    private final McqQuestionRepository mcqQuestionRepository;
+    private final QuestionRepository questionRepository;
 
     private final OptionMapper optionMapper;
     public OptionDTO saveOption(OptionDTO optionDTO){
@@ -26,9 +26,9 @@ public class OptionService {
     public Boolean addOptionToMcqQuestionById(Long mcqQuestionId, Long optionId){
         try {
             Option option = optionRepository.findById(optionId).orElse(null);
-            McqQuestion mcqQuestion = mcqQuestionRepository.findById(mcqQuestionId).orElse(null);
-            mcqQuestion.getOptions().add(option);
-            mcqQuestionRepository.save(mcqQuestion);
+            Question question = questionRepository.findById(mcqQuestionId).orElse(null);
+            question.getOptions().add(option);
+            questionRepository.save(question);
             return true;
         }catch (Exception e){
             return false;

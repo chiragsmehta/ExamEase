@@ -18,8 +18,8 @@ public class Option extends BaseEntity{
     private Boolean isCorrect;
 
     @ManyToOne
-    @JoinColumn(name = "mcq_question_id")
-    private McqQuestion mcqQuestion;
+    @JoinColumn(name = "question_id")
+    private Question question;
 
     @ManyToMany
     @JoinTable(
@@ -30,6 +30,6 @@ public class Option extends BaseEntity{
     private List<Picture> pictures;
 
     @OneToMany(mappedBy = "option")
-    private List<UserMcqQuestionSubmission> userMcqQuestionSubmissions;
+    private List<UserQuestionSubmission> userQuestionSubmissions;
 
 }
