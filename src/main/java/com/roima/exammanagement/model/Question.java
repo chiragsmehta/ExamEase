@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -40,7 +41,7 @@ public class Question extends BaseEntity{
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Option> options = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @Transient
     private List<Option> correctOptions;
 
     @ManyToOne
@@ -65,6 +66,10 @@ public class Question extends BaseEntity{
 
     @OneToMany(mappedBy = "question")
     private List<UserQuestionSubmission> userQuestionSubmissions;
+
+    public List<Option> getCorrectOptions(){
+        return options.stream().filter(Option::getIsCorrect).collect(Collectors.toList());
+    }
 
 
 }

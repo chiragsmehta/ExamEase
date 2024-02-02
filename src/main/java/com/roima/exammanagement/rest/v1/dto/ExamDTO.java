@@ -4,7 +4,6 @@ package com.roima.exammanagement.rest.v1.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.roima.exammanagement.rest.v1.dto.simple.SimpleExamEnrollmentDTO;
 import com.roima.exammanagement.rest.v1.dto.simple.SimpleQuestionDTO;
-import com.roima.exammanagement.rest.v1.dto.simple.SimpleProgrammingQuestionDTO;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,8 +25,7 @@ public class ExamDTO {
     private LocalDateTime endDateTime;
 
     private Duration duration;
-    private List<SimpleProgrammingQuestionDTO> programmingQuestion;
-    private List<SimpleQuestionDTO> mcqQuestion;
+    private List<SimpleQuestionDTO> question;
     private List<SimpleExamEnrollmentDTO> examEnrollment;
     private String instructions;
     private int totalMarks;

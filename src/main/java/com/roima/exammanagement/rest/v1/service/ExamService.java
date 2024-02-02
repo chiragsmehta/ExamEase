@@ -7,9 +7,12 @@ import com.roima.exammanagement.rest.v1.dto.ExamDTO;
 import com.roima.exammanagement.rest.v1.dto.QuestionDTO;
 import com.roima.exammanagement.rest.v1.mapper.ExamMapper;
 import com.roima.exammanagement.rest.v1.mapper.QuestionMapper;
+import com.sipios.springsearch.SpecificationImpl;
+import com.sipios.springsearch.anotation.SearchSpec;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +32,11 @@ public class ExamService {
     public ExamDTO findExamById(Long id) throws ChangeSetPersister.NotFoundException {
         Exam exam = examRepository.findById(id).orElseThrow(ChangeSetPersister.NotFoundException::new);
         return examMapper.toDTO(exam);
+    }
+
+    public List<ExamDTO> findBySpec(@SearchSpec Specification<Exam> specs){
+        List<Exam> exams = examRepository.findAll(specs);
+        return exams.stream().map(examMapper::toDTO).collect(Collectors.toList());
     }
 
     public Boolean assignExamToUserById(@NonNull Long userId, @NonNull Long examId){

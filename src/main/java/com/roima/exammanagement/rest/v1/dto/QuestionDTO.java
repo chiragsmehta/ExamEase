@@ -21,7 +21,8 @@ public class QuestionDTO {
     private DifficultyLevel difficulty;
     private List<SimpleOptionDTO> options;
     private List<SimpleOptionDTO> correctOptions;
-    private SimpleQuestionCategoryDTO mcqQuestionCategory;
+    private SimpleQuestionCategoryDTO questionCategory;
+    private SimpleQuestionTypeDTO questionType;
     private List<SimplePictureDTO> picture;
     private int marks;
 

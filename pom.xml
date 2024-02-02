@@ -105,6 +105,14 @@
 <!--			<version>2.16.1</version>-->
 <!--		</dependency>-->
 
+<!--		https://github.com/sipios/spring-search-->
+			<dependency>
+				<groupId>com.sipios</groupId>
+				<artifactId>spring-search</artifactId>
+				<version>0.2.3</version>
+			</dependency>
+
+
 	</dependencies>
 
 	<build>

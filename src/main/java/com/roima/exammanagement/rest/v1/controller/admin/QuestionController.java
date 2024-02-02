@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/admin/mcq")
+@RequestMapping("/api/v1/admin/question")
 @RequiredArgsConstructor
-public class McqQuestionController {
+public class QuestionController {
     private final QuestionService questionService;
 
 
@@ -27,6 +27,7 @@ public class McqQuestionController {
         try{
             return new ResponseEntity<>(questionService.save(questionDTO),HttpStatus.CREATED);
         }catch (Exception e){
+//            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

@@ -29,6 +29,7 @@ public class QuestionService {
 
     public QuestionDTO save(@NonNull QuestionDTO questionDTO){
         Question question = questionMapper.toEntity(questionDTO);
+        System.out.println(question.getQuestionType());
         question.getOptions().forEach((option -> option.setQuestion(question)));
         questionRepository.save(question);
 
