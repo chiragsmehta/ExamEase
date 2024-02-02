@@ -25,13 +25,16 @@ public class ProgrammingQuestion  extends BaseEntity{
     @Lob
     private String answer;
 
-    @ManyToOne
-    @JoinColumn(name = "difficulty_level_id")
     private DifficultyLevel difficultyLevel;
 
-    @ManyToOne
-    @JoinColumn(name="exam_id")
-    private Exam exam;
+    @ManyToMany
+    @JoinTable(
+            name = "exam_programming_question",
+            inverseJoinColumns = @JoinColumn(name = "exam_id"),
+            joinColumns = @JoinColumn(name = "programming_question_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"exam_id","programming_question_id"})}
+    )
+    private List<Exam> exam;
 
     private int marks;
 

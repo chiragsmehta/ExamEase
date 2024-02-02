@@ -43,7 +43,8 @@ public class Exam extends BaseEntity{
     @JoinTable(
             name = "exam_programming_question",
             joinColumns = @JoinColumn(name = "exam_id"),
-            inverseJoinColumns = @JoinColumn(name = "programming_question_id")
+            inverseJoinColumns = @JoinColumn(name = "programming_question_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"exam_id","programming_question_id"})}
     )
     private List<ProgrammingQuestion> programmingQuestions;
 
@@ -52,7 +53,8 @@ public class Exam extends BaseEntity{
     @JoinTable(
             name = "exam_mcq_question",
             joinColumns = @JoinColumn(name = "exam_id"),
-            inverseJoinColumns = @JoinColumn(name = "mcq_question_id")
+            inverseJoinColumns = @JoinColumn(name = "mcq_question_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"exam_id","mcq_question_id"})}
     )
     private List<McqQuestion> mcqQuestions;
 

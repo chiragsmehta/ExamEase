@@ -1,6 +1,7 @@
 package com.roima.exammanagement.rest.v1.dto;
 
 
+import com.roima.exammanagement.model.DifficultyLevel;
 import com.roima.exammanagement.model.McqQuestionCategory;
 import com.roima.exammanagement.model.Picture;
 import com.roima.exammanagement.rest.v1.dto.simple.*;
@@ -19,7 +20,7 @@ public class McqQuestionDTO {
     private Long id;
     private String question;
     private List<SimpleExamDTO> exams;
-    private SimpleDifficultyLevelDTO difficulty;
+    private DifficultyLevel difficulty;
     private List<SimpleOptionDTO> options;
     private SimpleMcqQuestionCategoryDTO mcqQuestionCategory;
     private List<SimplePictureDTO> picture;

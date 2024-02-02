@@ -30,9 +30,6 @@ public class McqQuestionService {
     private final OptionRepository optionRepository;
 
     public List<McqQuestionDTO> findAll(){
-        mcqQuestionRepository.findAll().forEach((item -> {
-            System.out.println(item.getExams().size());
-        }));
         return mcqQuestionRepository.findAll().stream().map(mcqQuestionMapper::toDTO).collect(Collectors.toList());
     }
 
