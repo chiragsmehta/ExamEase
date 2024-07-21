@@ -1,4 +1,4 @@
-package com.roima.exammanagement.rest.v1.service;
+package com.roima.exammanagement.rest.v1.service.utilitymodels;
 
 
 import com.roima.exammanagement.rest.v1.dto.QuestionDTO;

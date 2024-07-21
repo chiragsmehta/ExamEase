@@ -11,5 +11,6 @@ import java.time.Duration;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SimpleExamEnrollmentDTO {
+    private SimpleUserExamStatusDTO userExamStatus;
     private Long id;
 }

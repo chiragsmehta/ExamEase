@@ -2,8 +2,10 @@ package com.roima.exammanagement.rest.v1.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.roima.exammanagement.model.UserQuestionSubmission;
 import com.roima.exammanagement.rest.v1.dto.simple.SimpleExamEnrollmentDTO;
 import com.roima.exammanagement.rest.v1.dto.simple.SimpleQuestionDTO;
+import com.roima.exammanagement.rest.v1.dto.simple.SimpleUserDTO;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,17 +18,24 @@ public class ExamDTO {
     private String name;
     private Long id;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startDateTime;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
     private LocalDateTime endDateTime;
 
     private Duration duration;
     private List<SimpleQuestionDTO> question;
-    private List<SimpleExamEnrollmentDTO> examEnrollment;
+    private List<SimpleExamEnrollmentDTO> examEnrollments;
     private String instructions;
+    private SimpleUserDTO createdBy;
+    private LocalDateTime createdAt;
+    private SimpleUserDTO updatedBy;
+    private LocalDateTime updatedAt;
+    private int currentMarks;
+    private Boolean isActive;
     private int totalMarks;
+    private int passingMarks = (int)Math.round(totalMarks-totalMarks*0.4);
+    private List<UserQuestionSubmissionDTO> userQuestionSubmissions;
 }

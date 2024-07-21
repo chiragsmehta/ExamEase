@@ -21,4 +21,12 @@ public interface UserRepository extends JpaRepository<User,Long>, JpaSpecificati
             "JOIN u.examEnrollments er " +
             "WHERE er.exam.id = :exam_id ")
     List<User> findAllByExamId(@Param("exam_id") Long examId);
+
+
+    @Query(value = "SELECT  u from User u " +
+            " WHERE :exam NOT IN " +
+            "(SELECT er.exam FROM ExamEnrollment er WHERE " +
+            "u = er.user ) " +
+            "AND u.isActive = true")
+    List<User> findAllNotInExamEnrollment(@Param("exam") Exam exam);
 }

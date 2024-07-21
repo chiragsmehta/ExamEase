@@ -1,0 +1,2 @@
+2024-03-14 22:08:22,582 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting ExamManagementApplication using Java 1.8.0_402 on L10-JANIISHU-1 with PID 16024 (C:\Users\janiishu\Documents\project\Exam-Management-Backend\target\classes started by janiishu in C:\Users\janiishu\Documents\project\Exam-Management-Backend)
+2024-03-14 22:08:22,668 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"

@@ -1,0 +1,7 @@
+2024-02-29 21:13:29,830 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting ExamManagementApplication using Java 1.8.0_402 on L10-JANIISHU-1 with PID 10952 (C:\Users\janiishu\Documents\project\Exam-Management-Backend\target\classes started by janiishu in C:\Users\janiishu\Documents\project\Exam-Management-Backend)
+2024-02-29 21:13:29,930 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2024-02-29 21:13:56,271 WARN org.hibernate.cfg.AnnotationBinder [restartedMain] HHH000503: A class should not be annotated with both @Inheritance and @MappedSuperclass. @Inheritance will be ignored for: com.roima.exammanagement.model.BaseEntity.
+2024-02-29 21:13:58,918 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-29 21:14:00,099 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started ExamManagementApplication in 30.846 seconds (JVM running for 33.918)
+2024-02-29 21:14:24,418 INFO com.roima.exammanagement.auth.AuthenticationController [http-nio-8080-exec-4] Valid User authentication(login) request  for email: admin@admin.com
+2024-02-29 21:21:29,810 INFO com.roima.exammanagement.auth.AuthenticationController [http-nio-8080-exec-3] Valid User authentication(login) request  for email: shubham@gmail.com

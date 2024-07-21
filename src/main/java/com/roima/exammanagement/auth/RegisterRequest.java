@@ -1,5 +1,6 @@
 package com.roima.exammanagement.auth;
 
+import com.roima.exammanagement.model.Role;
 import lombok.*;
 
 @Data
@@ -13,4 +14,7 @@ public class RegisterRequest {
     private String email;
     @NonNull
     private String password;
+    private Boolean isActive;
+
+    private Role role;
 }

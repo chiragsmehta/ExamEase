@@ -22,4 +22,5 @@ public class UserExamStatusDTO {
     private LocalDateTime submissionDateTime;
     private Boolean hasSubmitted;
     private Duration remainingDuration;
+    private Boolean hasDoneMalpractice;
 }

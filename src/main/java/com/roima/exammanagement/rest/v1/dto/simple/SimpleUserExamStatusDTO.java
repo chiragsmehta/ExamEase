@@ -12,4 +12,5 @@ public class SimpleUserExamStatusDTO {
     private LocalDateTime submissionDateTime;
     private Boolean hasSubmitted;
     private Duration remainingDuration;
+    private Boolean hasDoneMalpractice;
 }

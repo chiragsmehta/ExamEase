@@ -14,13 +14,16 @@ public class SimpleExamDTO {
     private String name;
     private Long id;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
     private LocalDateTime startDateTime;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
     private LocalDateTime endDateTime;
     private Duration duration;
+    private int currentMarks;
     private int totalMarks;
+    private int passingMarks = (int)Math.round(totalMarks-totalMarks*0.4);
+    private Boolean isActive;
 }

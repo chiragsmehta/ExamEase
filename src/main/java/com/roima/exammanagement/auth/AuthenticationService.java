@@ -6,8 +6,7 @@ import com.roima.exammanagement.model.User;
 import com.roima.exammanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,10 +15,12 @@ import org.springframework.stereotype.Service;
 import com.roima.exammanagement.model.User;
 import com.roima.exammanagement.config.ApplicationConfig.*;
 
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -37,9 +38,13 @@ public class AuthenticationService {
         user.setName(registerRequest.getName());
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setRole(Role.USER);
+        user.setRole(registerRequest.getRole());
+        user.setIsActive(registerRequest.getIsActive());
         userRepository.save(user);
-        String jwtToken = jwtService.generateToken(user);
+        HashMap<String,Object> extraClaims = new HashMap<>();
+        extraClaims.put("role",user.getRole());
+        String jwtToken = jwtService.generateToken(extraClaims,user);
+
         return  AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -54,8 +59,11 @@ public class AuthenticationService {
                 )
         );
     User user = userRepository.findByEmail(authenticationRequest.getEmail()).orElse(null);
-    logger.info(user.getEmail());
-    String jwtToken = jwtService.generateToken(user);
+
+        HashMap<String,Object> extraClaims = new HashMap<>();
+        extraClaims.put("role",user.getRole());
+
+        String jwtToken = jwtService.generateToken(extraClaims,user);
     return AuthenticationResponse.builder()
             .token(jwtToken)
             .build();

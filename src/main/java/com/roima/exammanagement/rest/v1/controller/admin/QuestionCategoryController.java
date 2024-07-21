@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/admin/question-category")
+@CrossOrigin
 public class QuestionCategoryController {
     private final QuestionCategoryService questionCategoryService;
 
@@ -25,7 +26,7 @@ public class QuestionCategoryController {
     @PostMapping("")
     public ResponseEntity<QuestionCategoryDTO> save(@RequestBody QuestionCategoryDTO questionCategoryDTO){
         try {
-            System.out.println(questionCategoryDTO.getName());
+//            System.out.println(questionCategoryDTO.getName());
             return new ResponseEntity<>(questionCategoryService.save(questionCategoryDTO), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -5,16 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class UserQuestionSubmission extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "user_id" )
@@ -30,5 +29,12 @@ public class UserQuestionSubmission extends BaseEntity{
 
     @Lob
     private String answer;
+
+    @ManyToOne
+    @JoinColumn(name="exam_id")
+    private Exam exam;
+
+    private int gainedMarks;
+    private Boolean isChecked = false;
 
 }

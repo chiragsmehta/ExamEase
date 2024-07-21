@@ -7,4 +7,6 @@ import lombok.Data;
 public class SimpleQuestionTypeDTO {
     private Long id;
     private String name;
+    private Boolean isOptionRequired;
+    private int marks;
 }

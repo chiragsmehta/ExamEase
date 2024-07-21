@@ -18,13 +18,14 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/admin/question-type")
+@CrossOrigin
 public class QuestionTypeController {
     private final QuestionTypeService questionTypeService;
 
     @PostMapping("")
     public ResponseEntity<QuestionTypeDTO> save(@RequestBody QuestionTypeDTO questionTypeDTO){
         try {
-            System.out.println(questionTypeDTO.getName());
+//            System.out.println(questionTypeDTO.getName());
             return new ResponseEntity<>(questionTypeService.save(questionTypeDTO), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

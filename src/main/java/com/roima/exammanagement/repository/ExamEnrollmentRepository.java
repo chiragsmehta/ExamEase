@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExamEnrollementRepository extends JpaRepository<ExamEnrollment,Long>, JpaSpecificationExecutor<ExamEnrollment> {
+public interface ExamEnrollmentRepository extends JpaRepository<ExamEnrollment,Long>, JpaSpecificationExecutor<ExamEnrollment> {
     public ExamEnrollment findByUserAndExam(User user, Exam exam);
 }

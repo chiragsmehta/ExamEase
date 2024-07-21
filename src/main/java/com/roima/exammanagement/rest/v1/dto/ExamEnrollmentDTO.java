@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -23,4 +24,8 @@ public class ExamEnrollmentDTO {
     private SimpleUserDTO user;
     private SimpleExamDTO exam;
     private SimpleUserExamStatusDTO userExamStatus;
+    private SimpleUserDTO createdBy;
+    private LocalDateTime createdAt;
+    private SimpleUserDTO updatedBy;
+    private LocalDateTime updatedAt;
 }
